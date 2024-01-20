@@ -1,129 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Threading;
+
 namespace Game
 {
-
-
     class Snake : SnakeGame
     {
-
-        private List<int> newlocationsX = new List<int>();
-        private List<int> newlocationsY = new List<int>();
-
-
-        private void MoveUp()
-        {
-            int i = 0;
-
-            if (positionMoving == "U")
-            {
-                for (int x = 0; x <= locationsX.Count - 2; x++)
-                {
-
-                    int newx = GetPartAheadX(i);
-                    newlocationsX[x] = newx;
-                    i++;
-
-                }
-
-                int indexy = locationsY.Count - 1;
-                int c = locationsY[indexy];
-                c--;
-                newlocationsY[indexy] = c;
-                i = 0;
-                for (int x = 0; x <= locationsX.Count - 2; x++)
-                {
-
-                    int newy = GetPartAheadY(i);
-                    newlocationsY[x] = newy;
-                    i++;
-                }
-            }
-        }
-        private void MoveLeft()
-        {
-            int i = 0;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newx = GetPartAheadX(i);
-                newlocationsX[x] = newx;
-                i++;
-            }
-            i = 0;
-            int index = locationsX.Count - 1;
-            int z = locationsX[index];
-            z -= 1;
-            newlocationsX[index] = z;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newy = GetPartAheadY(i);
-                newlocationsY[x] = newy;
-                i++;
-            }
-        }
-        private void MoveRight()
-        {
-            int i = 0;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newx = GetPartAheadX(i);
-                newlocationsX[x] = newx;
-                i++;
-            }
-            i = 0;
-            int index = locationsX.Count - 1;
-            int z = locationsX[index];
-            z += 1;
-            newlocationsX[index] = z;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newy = GetPartAheadY(i);
-                newlocationsY[x] = newy;
-                i++;
-            }
-        }
-        private void MoveDown()
-        {
-            int i = 0;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newx = GetPartAheadX(i);
-                newlocationsX[x] = newx;
-                i++;
-
-            }
-
-            int indexy = locationsY.Count - 1;
-            int c = locationsY[indexy];
-            c++;
-            newlocationsY[indexy] = c;
-            i = 0;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
-            {
-
-                int newy = GetPartAheadY(i);
-                newlocationsY[x] = newy;
-                i++;
-            }
-        }
-
         public int GetPartAheadX(int place)
         {
-
             place += 1;
-
             int x = locationsX[place];
-
             return x;
-
         }
-
         public int GetPartAheadY(int place)
         {
             place += 1;
@@ -131,11 +17,101 @@ namespace Game
             return y;
 
         }
+        private List<int> newlocationsX = new List<int>();
+        private List<int> newlocationsY = new List<int>();
+        private void MoveUp()
+        {
+            int i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+                int Newx = GetPartAheadX(i);
+                newlocationsX[index] = Newx;
+                i++;
+            }
+            int indexy = locationsY.Count - 1;
+            int NY = locationsY[indexy];
+            NY--;
+            newlocationsY[indexy] = NY;
+            i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+                int Newy = GetPartAheadY(i);
+                newlocationsY[index] = Newy;
+                i++;
+            }
+        }
+        private void MoveLeft()
+        {
+            int i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+
+                int Newx = GetPartAheadX(i);
+                newlocationsX[index] = Newx;
+                i++;
+            }
+            i = 0;
+            int index2 = locationsX.Count - 1;
+            int LX = locationsX[index2];
+            LX -= 1;
+            newlocationsX[index2] = LX;
+            for (int x = 0; x <= locationsX.Count - 2; x++)
+            {
+                int Newx = GetPartAheadY(i);
+                newlocationsY[x] = Newx;
+                i++;
+            }
+        }
+        private void MoveRight()
+        {
+            int i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+                int Newx = GetPartAheadX(i);
+                newlocationsX[index] = Newx;
+                i++;
+            }
+            i = 0;
+            int index2 = locationsX.Count - 1;
+            int z = locationsX[index2];
+            z += 1;
+            newlocationsX[index2] = z;
+            for (int x = 0; x <= locationsX.Count - 2; x++)
+            {
+
+                int NewX = GetPartAheadY(i);
+                newlocationsY[x] = NewX;
+                i++;
+            }
+        }
+        private void MoveDown()
+        {
+            int i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+
+                int NewY = GetPartAheadX(i);
+                newlocationsX[index] = NewY;
+                i++;
+
+            }
+
+            int index2 = locationsY.Count - 1;
+            int LY = locationsY[index2];
+            LY++;
+            newlocationsY[index2] = LY;
+            i = 0;
+            for (int index = 0; index <= locationsX.Count - 2; index++)
+            {
+
+                int NewY = GetPartAheadY(i);
+                newlocationsY[index] = NewY;
+                i++;
+            }
+        }
+        
         public void Move(Snake snake, int[] pointscords, bool firstmove = true)
         {
-
-
-
 
             if (SnakeGame.GameContinueing == true)
             {
@@ -158,11 +134,6 @@ namespace Game
                         GameOver(snake);
                     }
                 }
-
-
-
-
-
                 foreach (int content in locationsX)
                 {
                     newlocationsX.Add(content);
@@ -184,8 +155,6 @@ namespace Game
                 {
                     MoveUp();
                 }
-
-
                 else if (snake.positionMoving == "D" && CanMoveDown == true)
                 {
                     MoveDown();
@@ -193,7 +162,6 @@ namespace Game
 
                 for (int variable = 0; variable <= locationsX.Count - 1; variable++)
                 {
-
                     int oldx = locationsX[variable];
                     int oldy = locationsY[variable];
                     Console.SetCursorPosition(oldx, oldy);
@@ -211,61 +179,39 @@ namespace Game
                         int y = newlocationsY[variable];
                         Console.SetCursorPosition(x, y);
                         Console.Write("\b█");
-
-
                     }
                 }
-
                 for (int variable = 0; variable <= locationsX.Count - 1; variable++)
                 {
                     locationsX[variable] = newlocationsX[variable];
                     locationsY[variable] = newlocationsY[variable];
                 }
-
             }
             else
             {
                 Console.Clear();
             }
-
-
-
-
-            Thread.Sleep(250);
-
-
-
-
+            Thread.Sleep(Convert.ToInt32(difficulty));
         }
-
         private void Grow(int[] pointscords)
         {
             Points++;
             newlocationsX.Insert(0, newlocationsX[0]);
             newlocationsY.Insert(0, newlocationsY[0]);
-
             locationsX.Insert(0, newlocationsX[0]);
             locationsY.Insert(0, newlocationsY[0]);
-
-
             for (int variable = 0; variable <= locationsX.Count - 1; variable++)
             {
                 int x = newlocationsX[variable];
                 int y = newlocationsY[variable];
                 Console.SetCursorPosition(x, y);
                 Console.Write("\b█");
-
-
             }
             Console.CursorLeft = pointscords[0];
             Console.CursorTop = pointscords[1];
-
             Console.WriteLine("\b" + Points);
-
             Displaydot(snake, false);
-
         }
-
         public List<int> locationsX = new List<int>()
         {
             47, 48, 49, 50
@@ -274,63 +220,20 @@ namespace Game
         {
             12, 12, 12, 12
         };
-
-
-
         public bool CanMoveLeft = false;
         public bool CanMoveRight = true;
         public bool CanMoveUp = true;
         public bool CanMoveDown = true;
-
-
-
-
-
-        private int size = 4;
-
-        private int tailx;
-
-        public int TailX
-        {
-            get { return tailx; }
-            set { tailx = value; }
-        }
-
-        private int taily;
-
-        public int TailY
-        {
-            get { return taily; }
-            set { taily = value; }
-        }
-
         //R - right, L - left, U - up, D - down
         public string positionMoving = "R";
-
         public int Points = 0;
-
-
-        public int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
-
-        private bool haseaten = false;
-
-        public bool HasEaten
-        {
-            get { return haseaten; }
-            set { haseaten = value; }
-        }
-
-
+        public bool haseaten = false;
     }
-
-
     class SnakeGame
     {
-
+        public static double difficulty;
+        public static int dotx;
+        public static int doty;
         public static bool GameContinueing = true;
         private static int[] Display()
         {                                                                                                                         //100
@@ -340,16 +243,12 @@ namespace Game
                 Console.WriteLine("█                                                                                                  █");
             }
             Console.WriteLine("████████████████████████████████████████████████████████████████████████████████████████████████████");
-
             Console.Write("\nPoints: " + snake.Points);
             int x = Console.CursorLeft;
             int y = Console.CursorTop;
-
             int[] cords = { x, y };
             return cords;
-
         }
-
         private static int RandomX()
         {
             Random rand = new Random();
@@ -359,19 +258,12 @@ namespace Game
         {
             Random rand = new Random();
             return rand.Next(1, 26);
-
         }
-        public static int dotx;
-        public static int doty;
-
         public static void Displaydot(Snake snake, bool GameBegun)
         {
             var x = RandomX();
             int y = RandomY();
-
-
-
-            if (!snake.HasEaten)
+            if (!snake.haseaten)
             {
                 if (GameBegun)
                 {
@@ -399,13 +291,9 @@ namespace Game
                     dotx = x;
                     doty = y;
                 }
-
             }
-
-
         }
         public static Snake snake = new Snake();
-
         private static void DisplaySnake(int size = 4)
         {
             Console.SetCursorPosition(47, 12);
@@ -416,7 +304,6 @@ namespace Game
             Console.Write("\b█");
             Console.SetCursorPosition(50, 12);
             Console.Write("\b█");
-
         }
         public static void Arrow()
         {
@@ -431,7 +318,6 @@ namespace Game
                     snake.CanMoveDown = true;
                     snake.CanMoveLeft = true;
                     snake.CanMoveUp = true;
-
                 }
                 if (key.Key == ConsoleKey.RightArrow && snake.CanMoveRight == true)
                 {
@@ -448,7 +334,6 @@ namespace Game
                     snake.CanMoveDown = true;
                     snake.CanMoveLeft = true;
                     snake.CanMoveUp = false;
-
                 }
                 if (key.Key == ConsoleKey.UpArrow && snake.CanMoveUp == true)
                 {
@@ -459,9 +344,7 @@ namespace Game
                     snake.CanMoveUp = true;
                 }
             }
-
         }
-
         private static void DisplayGameOver()
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -473,21 +356,15 @@ namespace Game
 
             Console.WriteLine("\nPoints: " + snake.Points + "\n");
         }
-
         public static void GameOver(Snake snake)
         {
             DisplayGameOver();
-
-
             ConsoleKeyInfo key;
-
             string OptionSelected = "RESTART";
-
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("RESTART");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("EXIT");
-
             while (true)
             {
                 key = Console.ReadKey();
@@ -532,14 +409,12 @@ namespace Game
                 Game.SnakeGame.Restart();
 
             }
-
         }
         public static void Restart()
         {
             snake = null;
             Start(true);
         }
-
         public static void Start(bool restarted = false)
         {
             if (restarted == true)
@@ -549,21 +424,17 @@ namespace Game
             }
 
             Thread movement = new Thread(new ThreadStart(Arrow));
+            
             movement.Start();
             int x = Console.CursorLeft;
             int y = Console.CursorTop;
             int[] cords = Display();
             Displaydot(snake, false);
             DisplaySnake();
-           
-
-
             while (GameContinueing == true)
             {
 
                 snake.Move(snake, cords, false);
-
-
 
                 if (GameContinueing == false)
                 {
@@ -573,9 +444,6 @@ namespace Game
             }
             Console.Clear();
             GameOver(snake);
-
-
-
         }
     }
 }
