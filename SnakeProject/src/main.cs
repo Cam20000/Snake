@@ -4,7 +4,10 @@ namespace main
 {
     public class Program
     {
-        private static double Difficulty()
+        public static int difficulty = 250;
+        
+        //ONLY FOR TESTS
+        private static int Difficulty()
         {
             Console.Clear();
             string optionSelected = "0.25";
@@ -17,12 +20,12 @@ namespace main
             Console.WriteLine("0.10 seconds");
             Console.WriteLine("0.08 seconds");
             ConsoleKeyInfo key;
-            while(true)
+            while (true)
             {
                 key = Console.ReadKey();
-                if(key.Key == ConsoleKey.UpArrow)
+                if (key.Key == ConsoleKey.UpArrow)
                 {
-                    switch(optionSelected)
+                    switch (optionSelected)
                     {
                         case "0.08":
                             Console.Clear();
@@ -36,7 +39,7 @@ namespace main
                             Console.WriteLine("0.10 seconds");
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("0.08 seconds");
-                        break;
+                            break;
                         case "0.10":
                             Console.Clear();
                             optionSelected = "0.20";
@@ -49,7 +52,7 @@ namespace main
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("0.10 seconds");
                             Console.WriteLine("0.08 seconds");
-                        break;
+                            break;
                         case "0.20":
                             Console.Clear();
                             optionSelected = "0.25";
@@ -62,12 +65,12 @@ namespace main
                             Console.WriteLine("0.20 second");
                             Console.WriteLine("0.10 seconds");
                             Console.WriteLine("0.08 seconds");
-                        break;
+                            break;
                     }
                 }
-                else if(key.Key == ConsoleKey.DownArrow)
+                else if (key.Key == ConsoleKey.DownArrow)
                 {
-                    switch(optionSelected)
+                    switch (optionSelected)
                     {
                         case "0.25":
                             Console.Clear();
@@ -81,7 +84,7 @@ namespace main
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("0.10 seconds");
                             Console.WriteLine("0.08 seconds");
-                        break;
+                            break;
                         case "0.20":
                             Console.Clear();
                             optionSelected = "0.10";
@@ -107,19 +110,36 @@ namespace main
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("0.08 seconds");
                             Console.ForegroundColor = ConsoleColor.White;
-                        break;
+                            break;
                     }
                 }
-                else if(key.Key == ConsoleKey.Spacebar)
+                else if (key.Key == ConsoleKey.Spacebar)
                 {
                     Console.Clear();
-                    return Convert.ToDouble(optionSelected);
+                    switch(optionSelected)
+                    {
+                        case "0.25":
+                            return 250;
+                        break;
+                        case "0.20":
+                            return 200;
+                        break;
+                        case "0.10":
+                            return 100;
+                        break;
+                        case "0.08":
+                            return 80;
+                        break;
+
+                            
+                    }
+                    
                 }
             }
         }
         private static void MainMenu(string OptionSelected)
         {
-            double difficulty = 0.25;
+            
             DisplayLogo();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("START");
@@ -147,7 +167,7 @@ namespace main
                         Console.WriteLine("EXIT");
                         OptionSelected = "START";
                     }
-                    if(OptionSelected == "EXIT")
+                    if (OptionSelected == "EXIT")
                     {
                         //sets to difficulty
                         Console.Clear();
@@ -160,7 +180,7 @@ namespace main
                         Console.WriteLine("EXIT");
                         OptionSelected = "DIFFICULTY";
                     }
-                    
+
                 }
                 if (key.Key == ConsoleKey.DownArrow)
                 {
@@ -176,7 +196,7 @@ namespace main
                         Console.WriteLine("EXIT");
                         OptionSelected = "DIFFICULTY";
                     }
-                    else if(OptionSelected == "DIFFICULTY")
+                    else if (OptionSelected == "DIFFICULTY")
                     {
                         Console.Clear();
                         DisplayLogo();
@@ -197,14 +217,13 @@ namespace main
             if (OptionSelected == "START")
             {
                 Console.Clear();
-                SnakeGame.difficulty = difficulty*1000;
-                Game.SnakeGame.Start(false); //Starts the game
+                Game.SnakeGame.Start(false, difficulty); //Starts the game
             }
-            else if(OptionSelected == "EXIT")
+            else if (OptionSelected == "EXIT")
             {
                 Environment.Exit(1);
             }
-            else if( OptionSelected == "DIFFICULTY")
+            else if (OptionSelected == "DIFFICULTY")
             {
                 difficulty = Difficulty();
                 MainMenu(OptionSelected);
@@ -227,5 +246,6 @@ namespace main
             MainMenu("START");
             Console.ReadLine();
         }
+
     }
 }

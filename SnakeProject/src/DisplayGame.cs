@@ -2,7 +2,7 @@
 
 namespace Game
 {
-    class Snake : SnakeGame
+    public class Snake : SnakeGame
     {
         public int GetPartAheadX(int place)
         {
@@ -191,7 +191,8 @@ namespace Game
             {
                 Console.Clear();
             }
-            Thread.Sleep(Convert.ToInt32(difficulty));
+            
+            Thread.Sleep(difficulty);
         }
         private void Grow(int[] pointscords)
         {
@@ -229,9 +230,9 @@ namespace Game
         public int Points = 0;
         public bool haseaten = false;
     }
-    class SnakeGame
+    public class SnakeGame
     {
-        public static double difficulty;
+        public static int difficulty = 250;
         public static int dotx;
         public static int doty;
         public static bool GameContinueing = true;
@@ -415,8 +416,9 @@ namespace Game
             snake = null;
             Start(true);
         }
-        public static void Start(bool restarted = false)
+        public static void Start(bool restarted = false, int difficulty = 250)
         {
+            SnakeGame.difficulty = difficulty;
             if (restarted == true)
             {
                 snake = new Snake();
