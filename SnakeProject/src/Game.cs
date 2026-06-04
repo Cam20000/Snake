@@ -59,61 +59,8 @@ namespace Game
             }
         }
         
-        private void GameOver()
-        {
-            display.DisplayGameOver(snake);
-            ConsoleKeyInfo key;
-            string OptionSelected = "RESTART";
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("RESTART");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("EXIT");
-            while (true)
-            {
-                key = Console.ReadKey();
-                if (key.Key == ConsoleKey.UpArrow)
-                {
-                    if (OptionSelected != "RESTART")
-                    {
-                        Console.Clear();
-                        display.DisplayGameOver(snake);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("RESTART");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("EXIT");
-                        OptionSelected = "RESTART";
-                    }
-                }
-                if (key.Key == ConsoleKey.DownArrow)
-                {
-                    if (OptionSelected == "RESTART")
-                    {
-                        Console.Clear();
-                        display.DisplayGameOver(snake);
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("RESTART");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("EXIT");
-                        OptionSelected = "EXIT";
-                    }
-                }
-                if (key.Key == ConsoleKey.Spacebar)
-                {
-                    break;
-                }
-            }
-            if (OptionSelected != "RESTART")
-            {
-                Environment.Exit(1);
-            }
-            else
-            {
-                Console.Clear();
-                Restart();
-
-            }
-        }
-        private void Restart()
+        
+        public void Restart()
         {
             snake = null;
             Start(difficulty, true);
@@ -145,7 +92,7 @@ namespace Game
                 Thread.Sleep(difficulty);
             }
             Console.Clear();
-            GameOver();
+            display.DisplayGameOver(this, snake);
         }
     }
 }

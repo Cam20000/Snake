@@ -87,6 +87,7 @@ namespace Snake.src
                 i++;
             }
         }
+
         private void MoveRight()
         {
             int i = 0;
@@ -192,7 +193,7 @@ namespace Snake.src
             }
             if (newlocationsX[newlocationsX.Count - 1] == dotx && newlocationsY[newlocationsY.Count - 1] == doty)
             {
-                Grow(pointscords, snake, display);
+                Grow(pointscords, display);
             }
             else
             {
@@ -212,7 +213,7 @@ namespace Snake.src
             return true;
 
         }
-        private void Grow(int[] pointscords, Snake snake, Display display)
+        private void Grow(int[] pointscords, Display display)
         {
             Points++;
             newlocationsX.Insert(0, newlocationsX[0]);
@@ -229,7 +230,7 @@ namespace Snake.src
             Console.CursorLeft = pointscords[0];
             Console.CursorTop = pointscords[1];
             Console.WriteLine("\b" + Points);
-            display.Displaydot(snake, false);
+            display.Displaydot(this, false);
         }
         
         

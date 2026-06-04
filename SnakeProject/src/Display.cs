@@ -10,7 +10,127 @@ namespace Snake.src
 {
     public class Display
     {
-
+        private void DisplayGameOverText(Snake snake)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("██████       ██████    ████    ████   ███████      ██████    ██    ██   ██████   ██████");
+            Console.WriteLine("██          ██    ██   ██ ██  ██  ██  ██          ██    ██   ██    ██   ██       ██   ██");
+            Console.WriteLine("██   ███    ████████   ██  ██ ██  ██  ███████     ██    ██    ██  ██    ██████   ██████");
+            Console.WriteLine("██     ██   ██    ██   ██   ███   ██  ██          ██    ██     ████     ██       ██   ██");
+            Console.WriteLine(" ██████     ██    ██   ██    ██   ██  ███████      ██████       ██      ██████   ██   ██");
+            Console.WriteLine("\nPoints: " + snake.Points + "\n");
+        }
+        public void DisplayGameOver(Game.Game game, Snake snake)
+        {
+            DisplayGameOverText(snake);
+            
+            string OptionSelected = "RESTART";
+            ConsoleKeyInfo key;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("RESTART");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("MAIN MENU");
+            Console.WriteLine("EXIT");
+            while (true)
+            {
+                key = Console.ReadKey();
+                if (key.Key == ConsoleKey.UpArrow)
+                {
+                    if (OptionSelected == "RESTART") //sets to EXIT
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("RESTART");
+                        Console.WriteLine("MAIN MENU");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "EXIT";
+                    }
+                    else if (OptionSelected == "MAIN MENU")
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("RESTART");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("MAIN MENU");
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "RESTART";
+                    }
+                    else if (OptionSelected == "EXIT")
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("RESTART");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("MAIN MENU");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "MAIN MENU";
+                    }
+                    
+                }
+                if (key.Key == ConsoleKey.DownArrow)
+                {
+                    if (OptionSelected == "RESTART") //sets to EXIT
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("RESTART");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("MAIN MENU");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "MAIN MENU";
+                    }
+                    else if (OptionSelected == "MAIN MENU")
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("RESTART");
+                        Console.WriteLine("MAIN MENU");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "EXIT";
+                    }
+                    else if (OptionSelected == "EXIT")
+                    {
+                        Console.Clear();
+                        DisplayGameOverText(snake);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("RESTART");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("MAIN MENU");
+                        Console.WriteLine("EXIT");
+                        OptionSelected = "RESTART";
+                    }
+                }
+                if (key.Key == ConsoleKey.Spacebar)
+                {
+                    break;
+                }
+            }
+            if (OptionSelected == "EXIT")
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Environment.Exit(1);
+            }
+            if (OptionSelected == "MAIN MENU")
+            {
+                Console.Clear();
+                
+                DisplayMainMenu("START");
+            }
+            if (OptionSelected == "RESTART")
+            {
+                Console.Clear();
+                game.Restart();
+            }
+        }
         public int DisplayMainMenu(string OptionSelected)
         {
             int difficulty = 250;
@@ -115,17 +235,6 @@ namespace Snake.src
             Console.WriteLine("                                           ██  ██  ████  ██    ██  ██   ██   ██");
             Console.WriteLine("                                      ██████   ██   ███  ██    ██  ██    ██  ██████");
 
-        }
-        public void DisplayGameOver(Snake snake)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("██████       ██████    ████    ████   ███████      ██████    ██    ██   ██████   ██████");
-            Console.WriteLine("██          ██    ██   ██ ██  ██  ██  ██          ██    ██   ██    ██   ██       ██   ██");
-            Console.WriteLine("██   ███    ████████   ██  ██ ██  ██  ███████     ██    ██    ██  ██    ██████   ██████");
-            Console.WriteLine("██     ██   ██    ██   ██   ███   ██  ██          ██    ██     ████     ██       ██   ██");
-            Console.WriteLine(" ██████     ██    ██   ██    ██   ██  ███████      ██████       ██      ██████   ██   ██");
-
-            Console.WriteLine("\nPoints: " + snake.Points + "\n");
         }
         public int DisplayDifficulty()
         {
