@@ -10,146 +10,148 @@ namespace Snake.src
 {
     public class Snake
     {
-        public List<int> locationsX = new List<int>()
+        public List<int> LocationX = new List<int>()
         {
             47, 48, 49, 50
         };
-        public List<int> locationsY = new List<int>()
+        public List<int> LocationY = new List<int>()
         {
             12, 12, 12, 12
         };
-        public int dotx;
-        public int doty;
+
+        private List<int> NewLocationX = new List<int>();
+        private List<int> NewLocationY = new List<int>();
+
+        public int FruitX;
+        public int FruitY;
         public bool CanMoveLeft = false;
         public bool CanMoveRight = true;
         public bool CanMoveUp = true;
         public bool CanMoveDown = true;
         //R - right, L - left, U - up, D - down
-        public string positionMoving = "R";
+        public string Direction = "R";
         public int Points = 0;
-        public bool haseaten = false;
+        public bool HasEaten = false;
 
-        public int GetPartAheadX(int place)
+        public int GetPartAheadX(int index)
         {
-            place += 1;
-            int x = locationsX[place];
-            return x;
+            index += 1;
+            return LocationX[index];
+            
         }
-        public int GetPartAheadY(int place)
+        public int GetPartAheadY(int index)
         {
-            place += 1;
-            int y = locationsY[place];
-            return y;
+            index += 1;
+            return LocationY[index];
 
         }
-        private List<int> newlocationsX = new List<int>();
-        private List<int> newlocationsY = new List<int>();
+        
         private void MoveUp()
         {
-            int i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            int CurrentPart = 0;
+            for (int index = 0; index <= LocationX.Count - 2; index++)
             {
-                int Newx = GetPartAheadX(i);
-                newlocationsX[index] = Newx;
-                i++;
+                int NextX = GetPartAheadX(CurrentPart);
+                NewLocationX[index] = NextX;
+                CurrentPart++;
             }
-            int indexy = locationsY.Count - 1;
-            int NY = locationsY[indexy];
-            NY--;
-            newlocationsY[indexy] = NY;
-            i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            int IndexY = LocationY.Count - 1;
+            int Y = LocationY[IndexY];
+            Y--;
+            NewLocationY[IndexY] = Y;
+            CurrentPart = 0;
+            for (int index = 0; index <= LocationX.Count - 2; index++)
             {
-                int Newy = GetPartAheadY(i);
-                newlocationsY[index] = Newy;
-                i++;
+                int NextY = GetPartAheadY(CurrentPart);
+                NewLocationY[index] = NextY;
+                CurrentPart++;
             }
         }
         private void MoveLeft()
         {
-            int i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            int CurrentPart = 0;
+            for (int index = 0; index <= LocationX.Count - 2; index++)
             {
 
-                int Newx = GetPartAheadX(i);
-                newlocationsX[index] = Newx;
-                i++;
+                int NextX = GetPartAheadX(CurrentPart);
+                NewLocationX[index] = NextX;
+                CurrentPart++;
             }
-            i = 0;
-            int index2 = locationsX.Count - 1;
-            int LX = locationsX[index2];
-            LX -= 1;
-            newlocationsX[index2] = LX;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
+            CurrentPart = 0;
+            int IndexX = LocationX.Count - 1;
+            int X = LocationX[IndexX];
+            X -= 1;
+            NewLocationX[IndexX] = X;
+            for (int Y = 0; Y <= LocationX.Count - 2; Y++)
             {
-                int Newx = GetPartAheadY(i);
-                newlocationsY[x] = Newx;
-                i++;
+                int NextY = GetPartAheadY(CurrentPart);
+                NewLocationY[Y] = NextY;
+                CurrentPart++;
             }
         }
 
         private void MoveRight()
         {
-            int i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            int CurrentPart = 0;
+            for (int index = 0; index <= LocationX.Count - 2; index++)
             {
-                int Newx = GetPartAheadX(i);
-                newlocationsX[index] = Newx;
-                i++;
+                int NextX = GetPartAheadX(CurrentPart);
+                NewLocationX[index] = NextX;
+                CurrentPart++;
             }
-            i = 0;
-            int index2 = locationsX.Count - 1;
-            int z = locationsX[index2];
-            z += 1;
-            newlocationsX[index2] = z;
-            for (int x = 0; x <= locationsX.Count - 2; x++)
+            CurrentPart = 0;
+            int IndexX = LocationX.Count - 1;
+            int X = LocationX[IndexX];
+            X += 1;
+            NewLocationX[IndexX] = X;
+            for (int Y = 0; Y <= LocationX.Count - 2; Y++)
             {
 
-                int NewX = GetPartAheadY(i);
-                newlocationsY[x] = NewX;
-                i++;
+                int NextY = GetPartAheadY(CurrentPart);
+                NewLocationY[Y] = NextY;
+                CurrentPart++;
             }
         }
         private void MoveDown()
         {
             int i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            for (int index = 0; index <= LocationX.Count - 2; index++)
             {
 
-                int NewY = GetPartAheadX(i);
-                newlocationsX[index] = NewY;
+                int NextX = GetPartAheadX(i);
+                NewLocationX[index] = NextX;
                 i++;
 
             }
 
-            int index2 = locationsY.Count - 1;
-            int LY = locationsY[index2];
-            LY++;
-            newlocationsY[index2] = LY;
+            int IndexY = LocationY.Count - 1;
+            int Y = LocationY[IndexY];
+            Y++;
+            NewLocationY[IndexY] = Y;
             i = 0;
-            for (int index = 0; index <= locationsX.Count - 2; index++)
+            for (int indexY = 0; indexY <= LocationX.Count - 2; indexY++)
             {
 
                 int NewY = GetPartAheadY(i);
-                newlocationsY[index] = NewY;
+                NewLocationY[indexY] = NewY;
                 i++;
             }
         }
 
-        public bool Move(Snake snake, int[] pointscords, Display display) //returns game status
+        public bool Move(Snake snake, int[] PointsScored, Display display) //returns game status
         {
-            int head = snake.locationsX[snake.locationsX.Count - 1];
-            int headY = snake.locationsY[snake.locationsY.Count - 1];
+            int HeadX = snake.LocationX[snake.LocationX.Count - 1];
+            int HeadY = snake.LocationY[snake.LocationY.Count - 1];
 
-            if (head == 2 || head == 99 || headY == 1 || headY == 25)
+            if (HeadX == 2 || HeadX == 99 || HeadY == 1 || HeadY == 25)
             {
                 
                 Console.Clear();
                 return false;
             }
-            for (int i = 0; i <= snake.locationsX.Count - 2; i++)
+            for (int i = 0; i <= snake.LocationX.Count - 2; i++)
             {
-                if (head == locationsX[i] && headY == locationsY[i])
+                if (HeadX == LocationX[i] && HeadY == LocationY[i])
                 {
                     
                     Console.Clear();
@@ -158,77 +160,77 @@ namespace Snake.src
                 
             }
 
-            foreach (int content in locationsX)
+            foreach (int X in LocationX)
             {
-                newlocationsX.Add(content);
+                NewLocationX.Add(X);
             }
-            foreach (int content in locationsY)
+            foreach (int Y in LocationY)
             {
-                newlocationsY.Add(content);
+                NewLocationY.Add(Y);
             }
 
-            if (snake.positionMoving == "R" && CanMoveRight == true)
+            if (snake.Direction == "R" && CanMoveRight == true)
             {
                 MoveRight();
             }
-            else if (snake.positionMoving == "L" && CanMoveLeft == true)
+            else if (snake.Direction == "L" && CanMoveLeft == true)
             {
                 MoveLeft();
             }
-            else if (snake.positionMoving == "U" && CanMoveUp == true)
+            else if (snake.Direction == "U" && CanMoveUp == true)
             {
                 MoveUp();
             }
-            else if (snake.positionMoving == "D" && CanMoveDown == true)
+            else if (snake.Direction == "D" && CanMoveDown == true)
             {
                 MoveDown();
             }
 
-            for (int variable = 0; variable <= locationsX.Count - 1; variable++)
+            for (int i = 0; i <= LocationX.Count - 1; i++)
             {
-                int oldx = locationsX[variable];
-                int oldy = locationsY[variable];
-                Console.SetCursorPosition(oldx, oldy);
+                int OldX = LocationX[i];
+                int OldY = LocationY[i];
+                Console.SetCursorPosition(OldX, OldY);
                 Console.Write("\b ");
             }
-            if (newlocationsX[newlocationsX.Count - 1] == dotx && newlocationsY[newlocationsY.Count - 1] == doty)
+            if (NewLocationX[NewLocationX.Count - 1] == FruitX && NewLocationY[NewLocationY.Count - 1] == FruitY)
             {
-                Grow(pointscords, display);
+                Grow(PointsScored, display);
             }
             else
             {
-                for (int variable = 0; variable <= locationsX.Count - 1; variable++)
+                for (int i = 0; i <= LocationX.Count - 1; i++)
                 {
-                    int x = newlocationsX[variable];
-                    int y = newlocationsY[variable];
+                    int x = NewLocationX[i];
+                    int y = NewLocationY[i];
                     Console.SetCursorPosition(x, y);
                     Console.Write("\b█");
                 }
             }
-            for (int variable = 0; variable <= locationsX.Count - 1; variable++)
+            for (int i = 0; i <= LocationX.Count - 1; i++)
             {
-                locationsX[variable] = newlocationsX[variable];
-                locationsY[variable] = newlocationsY[variable];
+                LocationX[i] = NewLocationX[i];
+                LocationY[i] = NewLocationY[i];
             }
             return true;
 
         }
-        private void Grow(int[] pointscords, Display display)
+        private void Grow(int[] PointsCoordinates, Display display)
         {
             Points++;
-            newlocationsX.Insert(0, newlocationsX[0]);
-            newlocationsY.Insert(0, newlocationsY[0]);
-            locationsX.Insert(0, newlocationsX[0]);
-            locationsY.Insert(0, newlocationsY[0]);
-            for (int variable = 0; variable <= locationsX.Count - 1; variable++)
+            NewLocationX.Insert(0, NewLocationX[0]);
+            NewLocationY.Insert(0, NewLocationY[0]);
+            LocationX.Insert(0, NewLocationX[0]);
+            LocationY.Insert(0, NewLocationY[0]);
+            for (int variable = 0; variable <= LocationX.Count - 1; variable++)
             {
-                int x = newlocationsX[variable];
-                int y = newlocationsY[variable];
+                int x = NewLocationX[variable];
+                int y = NewLocationY[variable];
                 Console.SetCursorPosition(x, y);
                 Console.Write("\b█");
             }
-            Console.CursorLeft = pointscords[0];
-            Console.CursorTop = pointscords[1];
+            Console.CursorLeft = PointsCoordinates[0];
+            Console.CursorTop = PointsCoordinates[1];
             Console.WriteLine("\b" + Points);
             display.Displaydot(this, false);
         }

@@ -5,13 +5,13 @@ namespace Game
 {
     public class Game
     {
-        private int difficulty = 250;
+        private int Difficulty = 250;
         private bool GameContinueing = true;
         private Snake.src.Snake snake;
         private Display display;
-        public Game(int difficulty, Snake.src.Snake snake, Display display)
+        public Game(int Difficulty, Snake.src.Snake snake, Display display)
         {
-            this.difficulty = difficulty;
+            this.Difficulty = Difficulty;
             this.snake = snake;
             this.display = display;
         }
@@ -26,7 +26,7 @@ namespace Game
                 key = Console.ReadKey();
                 if (key.Key == ConsoleKey.LeftArrow && snake.CanMoveLeft == true)
                 {
-                    snake.positionMoving = "L";
+                    snake.Direction = "L";
                     snake.CanMoveRight = false;
                     snake.CanMoveDown = true;
                     snake.CanMoveLeft = true;
@@ -34,7 +34,7 @@ namespace Game
                 }
                 if (key.Key == ConsoleKey.RightArrow && snake.CanMoveRight == true)
                 {
-                    snake.positionMoving = "R";
+                    snake.Direction = "R";
                     snake.CanMoveRight = true;
                     snake.CanMoveDown = true;
                     snake.CanMoveLeft = false;
@@ -42,7 +42,7 @@ namespace Game
                 }
                 if (key.Key == ConsoleKey.DownArrow && snake.CanMoveDown == true)
                 {
-                    snake.positionMoving = "D";
+                    snake.Direction = "D";
                     snake.CanMoveRight = true;
                     snake.CanMoveDown = true;
                     snake.CanMoveLeft = true;
@@ -50,7 +50,7 @@ namespace Game
                 }
                 if (key.Key == ConsoleKey.UpArrow && snake.CanMoveUp == true)
                 {
-                    snake.positionMoving = "U";
+                    snake.Direction = "U";
                     snake.CanMoveDown = false;
                     snake.CanMoveLeft = true;
                     snake.CanMoveRight = true;
@@ -63,11 +63,11 @@ namespace Game
         public void Restart()
         {
             snake = null;
-            Start(difficulty, true);
+            Start(Difficulty, true);
         }
-        public void Start(int difficulty, bool restarted = false)
+        public void Start(int Difficulty, bool restarted = false)
         {
-            this.difficulty = difficulty;
+            this.Difficulty = Difficulty;
             if (restarted == true)
             {
                 snake = new Snake.src.Snake();
@@ -77,19 +77,19 @@ namespace Game
             movement.Start();
             int x = Console.CursorLeft;
             int y = Console.CursorTop;
-            int[] cords = display.Show(snake);
+            int[] Cordinatess = display.Show(snake);
             display.Displaydot(snake, false); 
             display.DisplaySnake();
             while (GameContinueing == true)
             {
-                GameContinueing = snake.Move(snake, cords, display); //snake.Move() returns the game's status
+                GameContinueing = snake.Move(snake, Cordinatess, display); //snake.Move() returns the game's status
 
                 if (GameContinueing == false)
                 {
                     Console.Clear();
                     break;
                 }
-                Thread.Sleep(difficulty);
+                Thread.Sleep(Difficulty);
             }
             Console.Clear();
             display.DisplayGameOver(this, snake);

@@ -378,50 +378,50 @@ namespace Snake.src
             Console.Write("\nPoints: " + snake.Points);
             int x = Console.CursorLeft;
             int y = Console.CursorTop;
-            int[] cords = { x, y };
-            return cords;
+            int[] coordinates = { x, y };
+            return coordinates;
         }
-        private int RandomX()
+        private int GetRandomX()
         {
-            Random rand = new Random();
-            return rand.Next(2, 100);
+            Random random = new Random();
+            return random.Next(2, 100);
         }
-        private int RandomY()
+        private int GetRandomY()
         {
-            Random rand = new Random();
-            return rand.Next(1, 26);
+            Random random = new Random();
+            return random.Next(1, 26);
         }
         public void Displaydot(Snake snake, bool GameBegun)
         {
-            var x = RandomX();
-            int y = RandomY();
-            if (!snake.haseaten)
+            var RandomX = GetRandomX();
+            int RandomY = GetRandomY();
+            if (!snake.HasEaten)
             {
                 if (GameBegun)
                 {
-                    Console.SetCursorPosition(x, y);
+                    Console.SetCursorPosition(RandomX, RandomY);
                     Console.Write("\bO");
                 }
                 else
                 {
-                    foreach (var value in snake.locationsX)
+                    foreach (var value in snake.LocationX)
                     {
-                        if (x == value)
+                        if (RandomX == value)
                         {
                             Displaydot(snake, false);
                         }
                     }
-                    foreach (var value in snake.locationsY)
+                    foreach (var value in snake.LocationY)
                     {
-                        if (y == value)
+                        if (RandomY == value)
                         {
                             Displaydot(snake, false);
                         }
                     }
-                    Console.SetCursorPosition(x, y);
+                    Console.SetCursorPosition(RandomX, RandomY);
                     Console.Write("\bO");
-                    snake.dotx = x;
-                    snake.doty = y;
+                    snake.FruitX = RandomX;
+                    snake.FruitY = RandomY;
                 }
             }
         }
